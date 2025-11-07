@@ -27,6 +27,14 @@ class IdeaController extends Controller
         return view('dashboard', compact('ideas'));
     }
 
+    public function show(Idea $idea)
+    {
+        if ($idea->user_id !== Auth::id()) {
+            abort(403);
+        }
+        return view('ideas.show', compact('idea'));
+    }
+
     public function create()
     {
         return view('ideas.create');

@@ -26,12 +26,15 @@
                     <div class="col-md-6 mb-3">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-weight: 400;">{{ $idea->title }}</h5>
+                                <h5 class="card-title" style="font-weight: 400;">
+                                    <a href="{{ route('ideas.show', $idea) }}" style="color: #000; text-decoration: none;">{{ $idea->title }}</a>
+                                </h5>
                                 <p class="card-text" style="color: #666;">{{ Str::limit($idea->description, 100) }}</p>
                                 <p class="mb-3">
                                     <span class="badge">{{ $idea->status }}</span>
                                     <small class="text-muted ms-2">{{ $idea->created_at->format('d/m/Y') }}</small>
                                 </p>
+                                <a href="{{ route('ideas.show', $idea) }}" class="btn btn-sm btn-outline-secondary">Voir détails</a>
                                 @if($idea->status === 'Soumise')
                                     <a href="{{ route('ideas.edit', $idea) }}" class="btn btn-sm btn-warning">Modifier</a>
                                     <form action="{{ route('ideas.destroy', $idea) }}" method="POST" class="d-inline">
